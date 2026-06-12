@@ -1,3 +1,5 @@
+const container = document.getElementById("container");
+
 let gameboard = [["","",""],["","",""],["","",""]];
 
 let fl = 0;
@@ -50,4 +52,9 @@ function play(){
     }
 }
 
-play();
+for (let i = 0; i < 9; i++){
+    const box = document.createElement("div");
+    box.classList.add("box");
+
+    container.appendChild(box);
+}
