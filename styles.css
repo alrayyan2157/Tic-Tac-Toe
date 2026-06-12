@@ -9,3 +9,7 @@
 .box{
     border: 1px solid gray;
 }
+
+.off{
+    display: none;
+}

@@ -1,4 +1,6 @@
 const container = document.getElementById("container");
+const restartBtn = document.getElementById("restart-btn");
+const msgBox = document.getElementById("winner");
 
 let gameboard = [["","",""],["","",""],["","",""]];
 
@@ -30,6 +32,8 @@ let currentPlayer = "X";
 
 function play(row,col){
 
+    if(count !== 9 && fl ===1) return;
+
     if (count !== 9 && fl === 0){
 
         if (gameboard[row][col] === "" && row >= 0 && row <= 2 && col >= 0 && col <= 2){
@@ -38,12 +42,14 @@ function play(row,col){
             checkStatus();
 
             if (fl === 1){
-                alert(`${currentPlayer} has won the game`);
+                msgBox.textContent = `${currentPlayer} has won the game`;
+                msgBox.classList.remove("off");
                 return;
             } 
 
             if (count === 9){
-                alert("Its a draw");
+                msgBox.textContent = "Its a draw";
+                msgBox.classList.remove("off");
                 return;
             }
             
@@ -72,3 +78,17 @@ for (let i = 0; i < 3; i++){
 
     }
 }
+
+function restart(){
+    currentPlayer = "X";
+    gameboard = [["","",""],["","",""],["","",""]];
+    fl = 0;
+    count = 0;
+    msgBox.textContent = "";
+    msgBox.classList.add("off");
+
+    const boxes = document.querySelectorAll(".box");
+    boxes.forEach(box => {box.innerHTML = ""});
+}
+
+restartBtn.addEventListener("click",restart);
