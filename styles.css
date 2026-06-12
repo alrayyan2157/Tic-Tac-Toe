@@ -1,15 +1,83 @@
-#container{
-    width: 500px;
-    height: 500px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.box{
-    border: 1px solid gray;
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9f9f9;
+  font-family: system-ui, sans-serif;
+  color: #111;
 }
 
-.off{
-    display: none;
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+h1 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #888;
+}
+
+#container {
+  width: 300px;
+  height: 300px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  border: 2px solid #111;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  transition: background 0.1s;
+  user-select: none;
+}
+
+.box:hover {
+  background: #f0f0f0;
+}
+
+#winner {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #111;
+  min-height: 1.5rem;
+}
+
+#restart-btn {
+  padding: 10px 28px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: #111;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+#restart-btn:hover {
+  background: #333;
+}
+
+.off {
+  display: none;
 }
