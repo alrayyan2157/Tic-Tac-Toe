@@ -26,11 +26,11 @@ function checkStatus() {
     }
 }
 
-function play(){
-    let currentPlayer = "X";
-    while (count !== 9 && fl === 0){
-        let row = parseInt(prompt("Enter the index of row"));
-        let col = parseInt(prompt("Enter the index of col"));
+let currentPlayer = "X";
+
+function play(row,col){
+
+    if (count !== 9 && fl === 0){
 
         if (gameboard[row][col] === "" && row >= 0 && row <= 2 && col >= 0 && col <= 2){
             gameboard[row][col] = currentPlayer;
@@ -39,22 +39,36 @@ function play(){
 
             if (fl === 1){
                 alert(`${currentPlayer} has won the game`);
-                break;
+                return;
             } 
+
+            if (count === 9){
+                alert("Its a draw");
+                return;
+            }
             
             currentPlayer = (currentPlayer === "X")? "O" : "X";
         } else {
             alert("invalid move");
         }
     }
-    if (fl === 0 && count === 9){
-        alert("Its a draw");
-    }
 }
 
-for (let i = 0; i < 9; i++){
-    const box = document.createElement("div");
-    box.classList.add("box");
+for (let i = 0; i < 3; i++){
+    for (let j = 0; j < 3; j++){
+        const box = document.createElement("div");
+        box.classList.add("box");
+        box.dataset.row = i;
+        box.dataset.col = j;
 
-    container.appendChild(box);
+        box.addEventListener("click",(e)=>{
+            let targetRow = parseInt(e.currentTarget.dataset.row);
+            let targetCol = parseInt(e.currentTarget.dataset.col);
+            play(targetRow,targetCol);
+            box.innerHTML = gameboard[targetRow][targetCol];
+        });
+
+        container.appendChild(box);
+
+    }
 }
